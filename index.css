@@ -3,3 +3,10 @@ html, body {
     border: 0;
     padding: 0;
 }
+
+html {
+    background-color: #222222;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+}
