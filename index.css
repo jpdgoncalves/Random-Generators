@@ -1,3 +1,16 @@
+@font-face {
+    font-family: Roboto;
+    src: url(resources/roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: Roboto;
+    font-weight: bold;
+    src: url(resources/roboto/Roboto-Bold.ttf);
+}
+
+
+
 html, body {
     margin: 0;
     border: 0;
@@ -6,7 +19,73 @@ html, body {
 
 html {
     background-color: #222222;
-    padding-top: 50px;
-    padding-right: 50px;
-    padding-left: 50px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+body {
+    font-family: Roboto;
+    color: #eeeeee;
+    font-weight: bold;
+}
+
+
+
+div.box {
+    background: #333333;
+    border-radius: 30px;
+    width: 100%;
+    height: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+
+
+div.box.input {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    outline: none;
+
+    transition-property: box-shadow;
+    transition-duration: .3s;
+}
+
+div.box.input:focus {
+    box-shadow: 0 0 6px 2px #eeeeee;
+}
+
+div.box.input:empty:before {
+    color: #777777;
+    content: attr(aria-placeholder);
+}
+
+
+
+div.box.button {
+    color: #29CB6A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition-property: background-color, color;
+    transition-duration: .5s;
+}
+
+div.box.button:hover {
+    cursor: pointer;
+    background-color: #29CB6A;
+    color: #eeeeee;
+}
+
+
+div.input-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    column-gap: 30px;
 }
