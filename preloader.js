@@ -1,10 +1,11 @@
 
+const parser = new DOMParser();
 let DOMREADY = false;
 
 document.addEventListener("DOMContentLoaded", () => { DOMREADY = true }, { once: true });
 
 
-export default class PreLoader {
+export class PreLoader {
     constructor() {
         this.resources = new Map();
         this.onload = console.log;
@@ -13,14 +14,19 @@ export default class PreLoader {
         this._futureOnLoad = false;
     }
 
-    load(url) {
+    /**
+     * 
+     * @param {string} url 
+     * @param {Function} converter 
+     */
+    load(url, converter = responseToText) {
 
         const request = fetch(url).then(
-            (response) => response.text()
+            (response) => converter(response)
         ).then(
-            (text) => {
+            (resource) => {
                 this._requests.delete(url);
-                this.resources.set(url, text);
+                this.resources.set(url, resource);
                 this._proxyOnLoadDispatch();
             }
         )
@@ -32,6 +38,7 @@ export default class PreLoader {
 
         return this;
     }
+
 
     _proxyOnLoadDispatch() {
         if (this._requests.size === 0) {
@@ -47,4 +54,44 @@ export default class PreLoader {
             }
         }
     }
+}
+
+
+/**
+ * 
+ * @param {Response} response 
+ */
+export function responseToText(response) {
+    return response.text();
+}
+
+
+export function responseToList(response) {
+    return responseToText(response).then(
+        (text) => text.split("\n").map(
+            (word) => word.trim()
+        )
+    );
+}
+
+
+/**
+ * 
+ * @param {Response} response
+ */
+export function responseToHTML(response) {
+    return response.text().then(
+        (text) => {
+            const html = [];
+            const doc = parser.parseFromString(text, "text/html");
+
+            while(doc.body.children.length > 0) {
+                let element = doc.body.children[0];
+                html.push(element);
+                doc.body.removeChild(element);
+            }
+
+            return html;
+        }
+    )
 }

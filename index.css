@@ -30,6 +30,10 @@ body {
     font-weight: bold;
 }
 
+h1 {
+    display: block;
+}
+
 
 
 div.box {
@@ -41,15 +45,16 @@ div.box {
     padding-right: 30px;
     box-sizing: border-box;
     margin-bottom: 30px;
+
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
 }
 
 
 
 div.box.input {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
     outline: none;
 
     transition-property: box-shadow;
@@ -61,6 +66,21 @@ div.box.input:focus {
 }
 
 div.box.input:empty:before {
+    color: #777777;
+    content: attr(aria-placeholder);
+}
+
+
+
+div.box.output {
+    display: block;
+    height: auto;
+    padding-top: 30px;
+    min-height: 150px;
+    padding-bottom: 30px ;
+}
+
+div.box.output:empty:before {
     color: #777777;
     content: attr(aria-placeholder);
 }
@@ -84,8 +104,12 @@ div.box.button:hover {
 }
 
 
+
 div.input-group {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     column-gap: 30px;
 }
+
+
+
