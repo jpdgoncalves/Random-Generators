@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div>
+        <h1>Character Personality Generator</h1>
+        <div class="input-group">
+            <div id="positive-traits" class="box input" aria-placeholder="Positive Traits (Number)"
+                contenteditable="true"></div>
+            <div id="neutral-traits" class="box input" aria-placeholder="Neutral Traits (Number)"
+                contenteditable="true"></div>
+            <div id="negative-traits" class="box input" aria-placeholder="Negative Traits (Number)"
+                contenteditable="true"></div>
+        </div>
+        <div id="generate" class="box button">Generate</div>
+        <div id="output" class="box output" aria-placeholder="The output will be displayed here..."></div>
+    </div>
+    <script type="module">
+        import * as PL from "./preloader.js";
+        import * as Random from "./random.js";
+
+        const preLoader = new PL.PreLoader("resources/traits");
+        preLoader.load("positive.txt", responseToList)
+            .load("neutral.txt", responseToList)
+            .load("negative.txt", responseToList);
+
+        preLoader.onload = (resources) => {
+            const positiveTraits = resources.get("positive.txt");
+            const negativeTraits = resources.get("negative.txt");
+            const neutralTraits = resources.get("neutral.txt");
+
+            const ptElement = document.getElementById("positive-traits");
+            const neutElement = document.getElementById("neutral-traits");
+            const negElement = document.getElementById("negative-traits");
+            const genElement = document.getElementById("generate");
+            const outputElement = document.getElementById("output");
+
+            genElement.addEventListener("click", () => {
+                const pTraits = parseValue(ptElement);
+                const neutTraits = parseValue(neutElement);
+                const negTraits = parseValue(negElement);
+
+                outputElement.innerHTML = "";
+                outputElement.appendChild(createTitle("Positive Traits"));
+                outputElement.appendChild(createList(Random.choices(positiveTraits, pTraits)));
+                outputElement.appendChild(createTitle("Neutral Traits"));
+                outputElement.appendChild(createList(Random.choices(neutralTraits, neutTraits)));
+                outputElement.appendChild(createTitle("Negative Traits"));
+                outputElement.appendChild(createList(Random.choices(negativeTraits, negTraits)));
+            });
+        }
+
+        /**
+         * 
+         * @param {HTMLElement} element 
+         */
+        function parseValue(element) {
+            let value = parseInt(element.innerText);
+            return Number.isNaN(value) ? 1 : value;
+        }
+
+        /**
+         * @param {string} text
+         */
+        function createTitle(text) {
+            let div = document.createElement("div");
+            let h1 = document.createElement("h1");
+            h1.innerText = text;
+            div.appendChild(h1);
+            return div;
+        }
+
+        /**
+         * @param {string[]} text
+         */
+        function createList(text) {
+            let div = document.createElement("div");
+            let p = document.createElement("p");
+            p.innerText = text.join("\n");
+            div.appendChild(p);
+            return div;
+        }
+
+        /**
+         * @param {Response} response
+         */
+        function responseToList(response) {
+            return response.text().then(
+                (text) => text.split("\n").map(
+                    (word) => word.trim()
+                )
+            );
+        }
+    </script>
+
+</body>
+
+</html>
