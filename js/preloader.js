@@ -42,7 +42,7 @@ export function responseToHTMLDOM(response) {
 export class PreLoader {
     /**
      * 
-     * @param {string} basePath A base path to be when requesting resources
+     * @param {string} basePath A base path to be used when requesting resources
      */
     constructor(basePath = "") {
         this.basePath = basePath.replace(/\/$/, "");
@@ -59,7 +59,7 @@ export class PreLoader {
     /**
      * 
      * @param {string} url The url for the resource requested 
-     * @param {function(Response):any} converter A converter function which will transform the response into an usable resource
+     * @param {function(Response):any} converter An async converter function which will transform the response into an usable resource
      */
     load(url, converter = responseToText) {
         const fullUrl = `${this.basePath}/${url}`;
@@ -103,7 +103,7 @@ export class PreLoader {
  * Class to be used to create rather complex chains of resources to preLoad.
  * Like the PreLoader it has an onload method that is called when all the resources are loaded with a Map as an argument.
  * 
- * Note that the preloaders create with this class should not have their onload method overriden as it is used to detect when to fire
+ * Note that the preloaders created with this class should not have their onload method overriden as it is used to detect when to fire
  * the PreLoaderMap.onload method.
  */
 export class PreLoaderMap {

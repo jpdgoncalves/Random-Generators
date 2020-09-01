@@ -1,4 +1,4 @@
-import IframePaginator from "./iframe-paginator.js";
+import IframePaginator from "./js/iframe-paginator.js";
 
 window.onload = () => {
     const paginator = new IframePaginator(document.body);
