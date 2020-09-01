@@ -25,7 +25,7 @@
         import * as PL from "../js/preloader.js";
         import * as Random from "../js/random.js";
 
-        const preLoader = new PL.PreLoader("/resources/traits");
+        const preLoader = new PL.PreLoader("../resources/traits");
         preLoader.load("positive.txt", responseToList)
             .load("neutral.txt", responseToList)
             .load("negative.txt", responseToList);
