@@ -111,5 +111,6 @@ div.input-group {
     column-gap: 30px;
 }
 
-
-
+nav.menu {
+    position: absolute;
+}
