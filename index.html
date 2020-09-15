@@ -2,7 +2,11 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/sideswitcher.css">
+        <link rel="stylesheet" href="./css/sideslider.css">
         <link rel="stylesheet" href="./css/base.css">
+        <script src="./js/sideslider.js" type="module"></script>
+        <script src="./js/sideswitcher.js" type="module"></script>
         <script src="index.js" type="module"></script>
         <style>
             html, body {
@@ -24,6 +28,15 @@
         </style>
     </head>
     <body>
-         
+         <nav class="sideslider">
+             <div class="sideswitcher">
+                 <div class="ss-item" data-ss-name="start">
+                     <h1 class="ss-item-title">Random Generators</h1>
+                     <ul id="navigation" class="ss-item-list">
+                         <li data-page="character-traits" >Character Traits</li>
+                     </ul>
+                 </div>
+             </div>
+         </nav>
     </body>
 </html>

@@ -111,6 +111,54 @@ div.input-group {
     column-gap: 30px;
 }
 
-nav.menu {
-    position: absolute;
+
+
+nav.sideslider {
+    background-color: #222222;
+}
+
+
+
+div.sideswitcher {
+    background-color: #222222;
+}
+
+div.ss-item {
+    background-color: #222222;   
+}
+
+h1.ss-item-title {
+    font-weight: bold;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 15px 15px 7.5px 15px;
+}
+
+ul.ss-item-list {
+    font-weight: normal;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.ss-item-list li {
+    padding: 7.5px 15px 7.5px 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: filter .3s;
+}
+
+ul.ss-item-list li:nth-of-type(2n+1) {
+    background-color: #333333;
+}
+
+ul.ss-item-list li:nth-of-type(2n) {
+    background-color: #222222;
+}
+
+ul.ss-item-list li:hover {
+    filter: brightness(150%);
 }
