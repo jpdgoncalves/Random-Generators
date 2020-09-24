@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/base.css">
+    </head>
+    <body>
+        <div>
+            <h1>Random Picker</h1>
+            <div id="items" class="box textarea" aria-placeholder="List of items. One item per line..." contenteditable="true"></div>
+            <div id="pick" class="box button">Pick one</div>
+            <div id="output" class="box output" aria-placeholder="Item picked will appear here..."></div>
+        </div>
+        <script type="module">
+            import {choices} from "../js/random.js";
+
+            function setup() {
+                const items = document.getElementById("items");
+                const pick = document.getElementById("pick");
+                const output = document.getElementById("output");
+
+                pick.addEventListener("click", () => {
+                    const itemsList = items.innerText.split("\n");
+                    console.log(itemsList);
+                    const choice = choices(itemsList);
+                    output.innerText = `Picked "${choice.length === 0 ? "" : choice[0]}"`;
+                });
+            }
+
+            document.addEventListener("DOMContentLoaded", setup);
+        </script>
+    </body>
+</html>

@@ -72,6 +72,34 @@ div.box.input:empty:before {
 
 
 
+div.box.textarea {
+    outline: none;
+
+    display: block;
+    height: auto;
+
+    overflow-y: scroll;
+
+    padding-top: 30px;
+    min-height: 150px;
+    max-height: 300px;
+    padding-bottom: 30px ;
+
+    transition-property: box-shadow;
+    transition-duration: .3s;
+}
+
+div.box.textarea:focus {
+    box-shadow: 0 0 6px 2px #eeeeee;
+}
+
+div.box.textarea:empty:before {
+    color: #777777;
+    content: attr(aria-placeholder);
+}
+
+
+
 div.box.output {
     display: block;
     height: auto;
@@ -161,4 +189,5 @@ ul.ss-item-list li:nth-of-type(2n) {
 
 ul.ss-item-list li:hover {
     filter: brightness(150%);
+    cursor: pointer;
 }

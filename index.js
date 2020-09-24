@@ -36,6 +36,7 @@ window.onload = () => {
     const navigation = document.getElementById("navigation");
 
     paginator.addPage("character-traits", "./pages/character-traits.html");
+    paginator.addPage("random-picker", "./pages/random-picker.html");
     paginator.display("character-traits");
 
     paginator.iframe.onload = () => {iframeEventsFix(paginator.iframe)};
