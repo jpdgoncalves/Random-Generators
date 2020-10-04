@@ -53,9 +53,9 @@ function mouseMove(event) {
         console.log(clientX);
         console.log(clientWidth * 0.05); */
 
-    if (clientX <= clientWidth * 0.02 && !SideSlider.classList.contains("active")) {
+    if (clientX <= clientWidth * 0.01 && !SideSlider.classList.contains("active")) {
         SideSlider.classList.add("active");
-    } else if (clientX >= clientWidth * 0.02 && !isContainedBy(target, SideSlider)) {
+    } else if (clientX >= clientWidth * 0.01 && !isContainedBy(target, SideSlider)) {
         SideSlider.classList.remove("active");
     }
 }
